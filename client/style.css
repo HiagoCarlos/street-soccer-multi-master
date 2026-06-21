@@ -17,9 +17,9 @@
 }
 
 :root {
-    --bg: #07080b; /* Game background fallback */
+    --bg: #002776; /* Game background fallback - Azul Brasil */
     --text: #f7f8fb;
-    --accent: #ff2b3f;
+    --accent: #ffdf00; /* Amarelo Brasil */
     --font-pixel: 'Habbo Volter', cursive;
     --font-standard: 'Habbo Ubuntu', 'Verdana', 'Tahoma', sans-serif;
 
@@ -31,12 +31,16 @@
     --font-display: 'Habbo Volter', cursive;
     --muted: #9ca3af;
 
-    /* Habbo Theme Variables */
-    --habbo-box-bg: #e4e2df;
-    --habbo-box-border: #000000;
-    --habbo-header-bg: #cc1b1b;
-    --habbo-blue: #1c5b8e;
+    /* Brasil World Cup Theme Variables */
+    --habbo-box-bg: #f5f0e1;
+    --habbo-box-border: #002776;
+    --habbo-header-bg: #009c3b; /* Verde bandeira */
+    --habbo-blue: #002776; /* Azul bandeira */
     --habbo-grey-light: #f4f4f4;
+    --brasil-yellow: #ffdf00;
+    --brasil-green: #009c3b;
+    --brasil-blue: #002776;
+    --brasil-white: #ffffff;
 }
 
 .useFilter {
@@ -62,9 +66,9 @@ body {
 /* LOBBY SPECIFIC STYLES                  */
 /* -------------------------------------- */
 body:not(.arena-body) {
-    background: #181818 url("/assets/bg.png") no-repeat center center;
+    background: #009c3b url("/assets/bg.png") no-repeat center center;
     background-size: cover;
-    color: #000;
+    color: #002776;
     isolation: isolate;
     position: relative;
     overflow-x: hidden;
@@ -77,8 +81,8 @@ body:not(.arena-body)::before {
     inset: 0;
     z-index: -1;
     background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.16) 38%, rgba(0, 0, 0, 0.62)),
-        rgba(10, 16, 24, 0.18);
+        linear-gradient(180deg, rgba(0, 156, 59, 0.6), rgba(0, 39, 118, 0.4) 38%, rgba(0, 156, 59, 0.7)),
+        rgba(255, 223, 0, 0.1);
     pointer-events: none;
 }
 
@@ -171,15 +175,15 @@ body:not(.arena-body)::before {
 /* Header */
 .habbo-header {
     background:
-        linear-gradient(90deg, rgba(228, 226, 223, 0.96), rgba(255, 255, 255, 0.9)),
-        var(--habbo-box-bg);
-    border: 2px solid #000;
+        linear-gradient(90deg, rgba(255, 223, 0, 0.96), rgba(255, 255, 255, 0.9)),
+        var(--brasil-yellow);
+    border: 2px solid #002776;
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.3), inset 2px 2px 0px rgba(255,255,255,0.5), inset -2px -2px 0px rgba(0,0,0,0.1);
+    box-shadow: 4px 4px 0px rgba(0,39,118,0.3), inset 2px 2px 0px rgba(255,255,255,0.5), inset -2px -2px 0px rgba(0,0,0,0.1);
     overflow: hidden;
     position: relative;
 }
@@ -188,7 +192,7 @@ body:not(.arena-body)::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(204, 27, 27, 0.14), rgba(255, 255, 255, 0.08), rgba(28, 91, 142, 0.14));
+    background: linear-gradient(90deg, rgba(0, 156, 59, 0.2), rgba(255, 255, 255, 0.1), rgba(0, 39, 118, 0.2));
     pointer-events: none;
 }
 
@@ -205,10 +209,10 @@ body:not(.arena-body)::before {
 
 .habbo-motto {
     font-family: var(--font-pixel);
-    color: #cc1b1b;
+    color: #009c3b;
     font-size: clamp(18px, 3vw, 28px);
     text-transform: uppercase;
-    text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+    text-shadow: 1px 1px 0 rgba(0,39,118,0.4);
     font-weight: 900;
 }
 
@@ -226,7 +230,7 @@ body:not(.arena-body)::before {
     background: var(--habbo-box-bg);
     border: 2px solid var(--habbo-box-border);
     border-radius: 8px;
-    box-shadow: inset -2px -2px 0px rgba(0,0,0,0.1), inset 2px 2px 0px rgba(255,255,255,0.5), 4px 4px 0px rgba(0,0,0,0.3);
+    box-shadow: inset -2px -2px 0px rgba(0,0,0,0.1), inset 2px 2px 0px rgba(255,255,255,0.5), 4px 4px 0px rgba(0,39,118,0.2);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -247,7 +251,7 @@ body:not(.arena-body)::before {
     font-family: var(--font-pixel);
     font-size: clamp(15px, 1.6vw, 20px);
     margin: 0;
-    text-shadow: 1px 1px 0 #000;
+    text-shadow: 1px 1px 0 #002776;
 }
 
 .habbo-box-content {
@@ -263,7 +267,7 @@ body:not(.arena-body)::before {
 /* Login Form Area */
 .status-bar {
     background: #fff;
-    border: 2px solid #000;
+    border: 2px solid #009c3b;
     border-radius: 4px;
     padding: 8px 12px;
     margin-bottom: 15px;
@@ -276,11 +280,11 @@ body:not(.arena-body)::before {
 }
 
 .status-label {
-    color: #666;
+    color: #002776;
 }
 
 .status-value {
-    color: #d9534f;
+    color: #009c3b;
     font-weight: bold;
 }
 
@@ -303,7 +307,7 @@ body:not(.arena-body)::before {
     flex: 1;
     min-width: 0;
     padding: 10px;
-    border: 2px solid #000;
+    border: 2px solid #002776;
     border-radius: 4px;
     font-family: var(--font-standard);
     font-size: 16px;
@@ -314,30 +318,34 @@ body:not(.arena-body)::before {
 
 .habbo-form input:focus {
     background: #ffffe0;
+    border-color: #009c3b;
 }
 
 .habbo-btn {
-    border: 2px solid #000;
+    border: 2px solid #002776;
     border-radius: 4px;
     font-family: var(--font-pixel);
     font-size: clamp(15px, 1.5vw, 18px);
     padding: 0 15px;
     cursor: pointer;
     text-transform: uppercase;
-    box-shadow: inset 2px 2px 0px rgba(255,255,255,0.3), 2px 2px 0px rgba(0,0,0,0.5);
+    box-shadow: inset 2px 2px 0px rgba(255,255,255,0.3), 2px 2px 0px rgba(0,39,118,0.4);
     transition: all 0.1s;
     outline: none;
+    background: var(--brasil-yellow);
+    color: #002776;
 }
 
 .habbo-btn:active {
     transform: translate(2px, 2px);
-    box-shadow: inset 2px 2px 0px rgba(255,255,255,0.3), 0px 0px 0px rgba(0,0,0,0.5);
+    box-shadow: inset 2px 2px 0px rgba(255,255,255,0.3), 0px 0px 0px rgba(0,39,118,0.4);
 }
 
 .habbo-btn-green {
-    background: #4ca64c;
+    background: #009c3b;
     color: #fff;
-    text-shadow: 1px 1px 0 #000;
+    text-shadow: 1px 1px 0 #002776;
+    border-color: #002776;
 }
 
 .help-text {
@@ -357,13 +365,15 @@ body:not(.arena-body)::before {
     width: fit-content;
     min-height: 42px;
     padding: 0 18px;
-    background: #e4e2df;
-    color: #000;
+    background: #ffdf00;
+    color: #002776;
     text-shadow: none;
+    border-color: #002776;
+    font-weight: bold;
 }
 
 .entrance-actions-copy {
-    color: #555;
+    color: #002776;
     font-family: var(--font-standard);
     font-size: 12px;
     line-height: 1.4;
@@ -378,9 +388,9 @@ body:not(.arena-body)::before {
 
 .info-card {
     background: #fff;
-    border: 2px solid #000;
+    border: 2px solid #009c3b;
     border-radius: 4px;
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+    box-shadow: 4px 4px 0px rgba(0,39,118,0.2);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -388,8 +398,8 @@ body:not(.arena-body)::before {
 
 .img-wrapper {
     height: 100px;
-    background: #e4e2df;
-    border-bottom: 2px solid #000;
+    background: #ffdf00;
+    border-bottom: 2px solid #009c3b;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -406,7 +416,7 @@ body:not(.arena-body)::before {
 .card-body {
     padding: 10px;
     font-size: 13px;
-    color: #333;
+    color: #002776;
     line-height: 1.4;
 }
 
@@ -478,12 +488,12 @@ body:not(.arena-body)::before {
 }
 
 .queue-inner-title {
-    background: #e4e2df;
+    background: #ffdf00;
+    color: #002776;
     margin: 0;
     padding: 8px 12px;
     font-size: 14px;
-    color: #333;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid #002776;
     text-transform: uppercase;
 }
 
@@ -495,8 +505,8 @@ body:not(.arena-body)::before {
 }
 
 .queue-count-badge {
-    background: #000;
-    color: #fff;
+    background: #002776;
+    color: #ffdf00;
     padding: 2px 8px;
     border-radius: 12px;
     font-size: 12px;
@@ -526,7 +536,7 @@ body:not(.arena-body)::before {
 }
 
 .admin-item:hover {
-    background: #e0f0fa;
+    background: #e6f7ec;
 }
 
 .name-with-head {
@@ -542,7 +552,7 @@ body:not(.arena-body)::before {
 }
 
 .queue-name small {
-    color: #888;
+    color: #009c3b;
     font-size: 12px;
     font-weight: normal;
 }
@@ -562,22 +572,23 @@ body:not(.arena-body)::before {
     align-items: center;
     background: var(--habbo-box-bg);
     padding: 8px 15px;
-    border: 2px solid #000;
+    border: 2px solid #002776;
     border-radius: 8px;
-    color: #333;
+    color: #002776;
     font-family: var(--font-pixel);
     font-size: 16px;
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.3), inset 2px 2px 0px rgba(255,255,255,0.5), inset -2px -2px 0px rgba(0,0,0,0.1);
+    box-shadow: 4px 4px 0px rgba(0,39,118,0.2), inset 2px 2px 0px rgba(255,255,255,0.5), inset -2px -2px 0px rgba(0,0,0,0.1);
     gap: 10px;
 }
 
 .footer-copy {
     text-shadow: none;
+    color: #002776;
 }
 
 .footer-credit {
     align-items: center;
-    color: #333;
+    color: #002776;
     display: inline-flex;
     gap: 8px;
     min-width: 0;
@@ -588,7 +599,8 @@ body:not(.arena-body)::before {
 }
 
 .footer-credit strong {
-    color: #cc1b1b;
+    color: #009c3b;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
 }
 
 .footer-head {
@@ -600,14 +612,14 @@ body:not(.arena-body)::before {
 }
 
 .admin-link {
-    color: #cc1b1b;
+    color: #009c3b;
     text-decoration: none;
     text-shadow: none;
     transition: color 0.2s;
 }
 
 .admin-link:hover {
-    color: #fff;
+    color: #ffdf00;
     text-decoration: underline;
 }
 
@@ -624,59 +636,61 @@ select,
 }
 
 .btn {
-    border: 2px solid #000 !important;
+    border: 2px solid #002776 !important;
     font-family: var(--font-pixel) !important;
     font-weight: 700;
     text-transform: uppercase;
     transition: transform 100ms ease;
-    box-shadow: 2px 2px 0px rgba(0,0,0,0.5) !important;
+    box-shadow: 2px 2px 0px rgba(0,39,118,0.4) !important;
 }
 
 .btn:active {
     transform: translateY(2px) translateX(2px) !important;
-    box-shadow: 0px 0px 0px rgba(0,0,0,0.5) !important;
+    box-shadow: 0px 0px 0px rgba(0,39,118,0.4) !important;
 }
 
 .btn-primary,
 .btn-danger {
-    background: var(--accent) !important;
+    background: #009c3b !important;
     color: #fff !important;
+    border-color: #002776 !important;
 }
 
 .btn-secondary,
 .btn-dark {
-    background: #333 !important;
+    background: #002776 !important;
     color: #fff !important;
+    border-color: #002776 !important;
 }
 
 .form-control,
 .form-select,
 input[type="text"] {
     background: rgba(255, 255, 255, 0.9) !important;
-    border: 2px solid #000 !important;
-    color: #000 !important;
+    border: 2px solid #002776 !important;
+    color: #002776 !important;
     box-shadow: none !important;
 }
 
 .form-control:focus,
 .form-select:focus,
 input[type="text"]:focus {
-    border-color: var(--accent) !important;
+    border-color: #009c3b !important;
     box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1) !important;
 }
 
 /* Modals */
 .modal-content {
     background: var(--habbo-box-bg) !important;
-    border: 2px solid #000 !important;
-    color: #000 !important;
+    border: 2px solid #002776 !important;
+    color: #002776 !important;
     border-radius: 8px !important;
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.3) !important;
+    box-shadow: 4px 4px 0px rgba(0,39,118,0.2) !important;
 }
 
 .modal-header,
 .modal-footer {
-    border-color: #000 !important;
+    border-color: #002776 !important;
     background: var(--habbo-header-bg) !important;
     color: #fff !important;
 }
@@ -728,7 +742,7 @@ input[type="text"]:focus {
     }
     .entrance-right {
         border-left: none;
-        border-top: 2px solid #000;
+        border-top: 2px solid #002776;
     }
     .habbo-footer {
         align-items: flex-start;
