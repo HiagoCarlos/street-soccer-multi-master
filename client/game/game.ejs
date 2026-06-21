@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="/manifest.json">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,height=device-height initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>[TRE] Futzin dos Treinadores</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="apple-touch-icon" href="/assets/favicon-192.png">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/game/counter.css">
+    <link rel="stylesheet" href="/game/canvas.css">
+    <link rel="stylesheet" href="/game/keyboard.css">
+</head>
+<body class="arena-body">
+    <!-- SVG Crispify -->
+    <svg style="display: none; position: absolute; width: 0; height: 0;">
+        <filter id="crispify"><feComponentTransfer><feFuncA type="discrete" tableValues="0 1"/></feComponentTransfer></filter>
+    </svg>
+
+    <div id="loading">
+        <div class="habbo-loader">
+            <img src="/assets/ball-dark-light.png" class="spin-ball" alt="Bola">
+            <p>CARREGANDO ARENA...</p>
+        </div>
+    </div>
+
+    <main class="arena-shell">
+        <section class="arena-stage">
+            <nav id="navbar" class="arena-hud">
+                <div class="hud-logo-area">
+                    <img src="/assets/Logo_Game.png" alt="Logo" class="hud-logo pixel-icon">
+                </div>
+                <div class="hud-score">
+                    <div class="score-strip" aria-label="Placar">
+                        <span id="time-left">3:00</span>
+                        <strong id="scoreboard-a" class="score-blue">0</strong>
+                        <strong id="scoreboard-b" class="score-red">0</strong>
+                        <span id="arena-status" class="score-status">Bloqueado</span>
+                    </div>
+                </div>
+
+                <div class="hud-actions">
+                    <button id="home" class="habbo-btn navbar-btn-my" title="Lobby Principal"><img src="/assets/home.png" alt="Home" class="pixel-icon"></button>
+                    <button id="help-btn" class="habbo-btn navbar-btn-my" type="button" title="Ajuda"><img src="/assets/ajuda.gif" alt="Ajuda" class="pixel-icon"></button>
+                    <button id="mute-btn" class="habbo-btn navbar-btn-my" title="Som"><img id="mute-icon" src="/assets/som_ativado.png" alt="Som" class="pixel-icon"></button>
+                    <button id="leave-btn" class="habbo-btn navbar-btn-my" title="Sair do Jogo"><img src="/assets/sair.png" alt="Sair" class="pixel-icon"></button>
+                </div>
+            </nav>
+
+            <div id="info">
+                <div id="ping" class="info-box">Ping: --</div>
+                <div id="fps" class="info-box">FPS: --</div>
+            </div>
+
+            <div id="spectator-badge" class="spectator-badge" hidden>
+                <span id="spectator-badge-text">Você está assistindo a partida.</span>
+            </div>
+
+            <div id="canvasDiv">
+                <div id="go321"></div>
+                <div id="left-area" class="touch-area"></div>
+                <div id="right-area" class="touch-area"></div>
+            </div>
+
+            <div id="lock-overlay" class="arena-overlay">
+                <div class="lock-backdrop"></div>
+                <div class="lock-panel habbo-box">
+                    <img src="/assets/times.png" alt="Arena Times" class="lock-image">
+                    <div class="lock-content">
+                        <strong id="overlay-title">Arena Fechada</strong>
+                        <span id="overlay-copy">Você está na fila. A arena será liberada pelo painel admin.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Habbo Tackle Button -->
+            <button id="tackle" class="habbo-btn habbo-btn-green" type="button">
+                <span>DESARME</span>
+                <small>Espaço / T / Touch</small>
+            </button>
+        </section>
+
+        <aside class="arena-sidebar">
+            <section class="habbo-box side-panel">
+                <div class="habbo-box-header">
+                    <h2 id="player-name-label" class="habbo-box-title">Jogador</h2>
+                </div>
+                <div class="habbo-box-content no-padding">
+                    <div class="team-grid" style="padding: 10px;">
+                        <div>
+                            <h3 class="team-title-blue">Time Azul</h3>
+                            <div id="active-a" class="mini-list"></div>
+                        </div>
+                        <div>
+                            <h3 class="team-title-red">Time Vermelho</h3>
+                            <div id="active-b" class="mini-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="habbo-box side-panel">
+                <div class="habbo-box-header">
+                    <h2 class="habbo-box-title">Próximos</h2>
+                </div>
+                <div class="habbo-box-content no-padding">
+                    <div class="team-grid" style="padding: 10px;">
+                        <div>
+                            <h3 class="team-title-blue">Time Azul</h3>
+                            <div id="next-a" class="mini-list"></div>
+                        </div>
+                        <div>
+                            <h3 class="team-title-red">Time Vermelho</h3>
+                            <div id="next-b" class="mini-list"></div>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid #ccc;">
+                        <h3 style="padding: 5px 10px; margin: 0; font-size: 11px; color: #666; background: #e4e2df;">Fila Restante</h3>
+                        <div id="queue-list" class="queue-list queue-list--stage"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="habbo-box side-panel" style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
+                <div class="habbo-box-header chat-header">
+                    <img src="/assets/chat.png" alt="Chat" class="pixel-icon chat-icon">
+                    <h2 class="habbo-box-title">Chat</h2>
+                </div>
+                <div class="habbo-box-content chat-content">
+                    <div id="chat-log" class="chat-log"></div>
+                    <form id="chat-form" class="chat-form">
+                        <input id="chat-input" class="form-control" type="text" maxlength="220" placeholder="Falar no quarto...">
+                        <button class="habbo-btn" type="submit">FALAR</button>
+                    </form>
+                </div>
+            </section>
+        </aside>
+    </main>
+
+    <div id="help-modal" class="help-modal" role="dialog" aria-modal="true" aria-labelledby="help-title" aria-hidden="true">
+        <div class="help-modal__backdrop" data-help-close></div>
+        <section class="help-modal__panel habbo-box" style="z-index: 40;">
+            <div class="habbo-box-header">
+                <h2 id="help-title" class="habbo-box-title">Como jogar</h2>
+                <button class="habbo-btn" type="button" data-help-close>X</button>
+            </div>
+            <div class="habbo-box-content">
+                <div class="help-grid">
+                    <div class="help-row">
+                        <span class="help-key">W A S D</span>
+                        <span class="help-key">Setas</span>
+                        <p>Mover o jogador pelo campo.</p>
+                    </div>
+                    <div class="help-row">
+                        <span class="help-key">Mouse</span>
+                        <p>Mirar a direcao do chute.</p>
+                    </div>
+                    <div class="help-row">
+                        <span class="help-key">Clique</span>
+                        <p>Chutar quando voce estiver perto da bola.</p>
+                    </div>
+                    <div class="help-row">
+                        <span class="help-key">Espaco</span>
+                        <span class="help-key">T</span>
+                        <p>Desarme/carrinho: use perto da bola para tentar roubar a posse. Tem recarga curta.</p>
+                    </div>
+                    <div class="help-row">
+                        <span class="help-key">Mobile</span>
+                        <p>Lado esquerdo move, lado direito chuta, botao Desarme faz o carrinho.</p>
+                    </div>
+                </div>
+                <p class="help-note">Quem estiver na fila pode assistir e conversar no chat enquanto espera a rotacao.</p>
+            </div>
+        </section>
+    </div>
+
+    <audio src="/assets/kick.mp3" id="kick-sound" preload="auto"></audio>
+    <audio src="/assets/goal-sound.mp3" id="goal-sound" preload="auto"></audio>
+    <audio src="/assets/pocket.mp3" loop id="bg-sound"></audio>
+    <script src="/libraries/jquery.min.js"></script>
+    <script src="/libraries/p5.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        window.INITIAL_PLAYER_NAME = <%- JSON.stringify(playerName || '') %>;
+    </script>
+    <script src="/libraries/joystick.js"></script>
+    <script src="/constants.js"></script>
+    <script src="/game/field.js"></script>
+    <script src="/game/cplayer.js"></script>
+    <script src="/game/cball.js"></script>
+    <script src="/game/cgame.js"></script>
+    <script src="/game/helper.js"></script>
+    <script src="/game/index.js"></script>
+</body>
+</html>
