@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: street-soccer-multi
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DBPASS
+        sync: false
+      - key: DBROUTE
+        value: /users
+      - key: PORT
+        value: 10000

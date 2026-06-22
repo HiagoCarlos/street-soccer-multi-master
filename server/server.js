@@ -79,21 +79,52 @@ function renderAdminLogin(res, error = '') {
     <link rel="stylesheet" href="/style.css">
     <style>
         body { min-height: 100vh; display: grid; place-items: center; overflow: auto; }
-        .login-panel { width: min(420px, calc(100vw - 32px)); padding: 24px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
-        .login-panel h1 { margin: 0 0 8px; font-family: var(--font-display); text-transform: uppercase; }
-        .login-panel p { color: var(--muted); }
-        .login-panel form { display: grid; gap: 12px; margin-top: 18px; }
-        .login-error { color: var(--accent); margin: 0; }
+        .login-panel {
+            width: min(460px, calc(100vw - 32px));
+            padding: 32px;
+            background: var(--bg-glass);
+            backdrop-filter: var(--blur);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+        }
+        .login-panel h1 {
+            margin: 0 0 8px;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            color: var(--green);
+            font-size: clamp(24px, 4vw, 32px);
+        }
+        .login-panel p { color: var(--text-secondary); font-size: 14px; line-height: 1.5; }
+        .login-panel form { display: grid; gap: 14px; margin-top: 20px; }
+        .login-panel .form-control {
+            min-height: 48px;
+            padding: 12px 16px;
+            font-size: 15px;
+        }
+        .login-panel .btn-primary {
+            min-height: 50px;
+            font-size: 15px;
+        }
+        .login-error { color: var(--red); margin: 0; font-weight: 600; }
+        .hero-kicker {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 0 4px;
+        }
     </style>
 </head>
 <body>
     <main class="login-panel">
-        <p class="hero-kicker">Área restrita</p>
+        <p class="hero-kicker">Area restrita</p>
         <h1>Treinadores</h1>
-        <p>Entre com o usuário e senha do painel admin.</p>
+        <p>Entre com o usuario e senha do painel admin.</p>
         ${error ? `<p class="login-error">${error}</p>` : ''}
         <form method="post" action="/admin/login">
-            <input class="form-control" name="username" placeholder="Usuário" autocomplete="username" autofocus>
+            <input class="form-control" name="username" placeholder="Usuario" autocomplete="username" autofocus>
             <input class="form-control" name="password" type="password" placeholder="Senha" autocomplete="current-password">
             <button class="btn btn-primary" type="submit">Entrar</button>
         </form>
@@ -195,6 +226,6 @@ server.on('error', (err) => {
     console.error('Server error:', err);
 });
 const port=process.env.PORT ?? 8000;
-server.listen(port,()=>{
+server.listen(port, '0.0.0.0', ()=>{
     console.log("server listening on port ",port);
 });
