@@ -208,8 +208,10 @@ app.post('/admin/api/:action', basicAdminAuth, async (req,res)=>{
     res.json({ok:true});
 });
 
+app.use("/", express.static(path.join(__dirname, "../frontend/dist"), { maxAge: '1d' }));
+app.use("/assets", express.static(path.join(__dirname, "../frontend/dist/assets"), { maxAge: '1d' }));
+app.use("/", express.static(path.join(__dirname, "../frontend/dist"), { maxAge: '1d' }));
 app.use("/", express.static(path.join(__dirname, "../client"), { maxAge: '1d' }));
-app.use("/frontend", express.static(path.join(__dirname, "../frontend/dist"), { maxAge: '1d' }));
 
 
 app.use('/room',roomsRouter)
