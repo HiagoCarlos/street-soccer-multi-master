@@ -201,7 +201,7 @@ app.post('/admin/api/:action', basicAdminAuth, async (req,res)=>{
     res.json({ok:true});
 });
 
-app.use("/",express.static("client", { maxAge: '1d' }));
+app.use("/", express.static(path.join(__dirname, "../client"), { maxAge: '1d' }));
 
 
 app.use('/room',roomsRouter)
