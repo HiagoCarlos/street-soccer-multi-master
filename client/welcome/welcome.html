@@ -4,202 +4,106 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="manifest" href="/manifest.json" />
-    <meta name="keywords" content="Realtime,Soccer,Game,Training" />
-    <meta
-      name="description"
-      content="É hora de descobrir quem são os treinadores mais pernetas! Vem pro futzin dos treinadores!"
-    />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Copa dos Treinadores - Futzin Brasil 2026</title>
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Copa dos Treinadores - Futzin Brasil 2026" />
+    <meta property="og:site_name" content="Copa dos Treinadores" />
     <meta property="og:title" content="Copa dos Treinadores - Futzin Brasil 2026" />
-    <meta
-      property="og:description"
-      content="O maior campeonato de futebol dos treinadores! Copa dos Treinadores 2026 - Vem pro futzin!"
-    />
+    <meta property="og:description" content="O maior campeonato de futebol dos treinadores! Copa dos Treinadores 2026." />
     <meta property="og:image" content="/assets/Logo_Game.png" />
-    <meta property="og:image:alt" content="Logo Copa dos Treinadores" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Copa dos Treinadores - Futzin Brasil 2026" />
-    <meta
-      name="twitter:description"
-      content="O maior campeonato de futebol dos treinadores! Copa dos Treinadores 2026 - Vem pro futzin!"
-    />
-    <meta name="twitter:image" content="/assets/Logo_Game.png" />
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
     <link rel="apple-touch-icon" href="/assets/favicon-192.png" />
-    <link rel="stylesheet" href="/style.css?v=20260621-copa-pro" />
+    <link rel="stylesheet" href="/style.css?v=2" />
   </head>
 
   <body>
-    <svg
-      style="display: none; position: absolute; width: 0; height: 0"
-      xmlns="http://www.w3.org/2000/svg"
-      version="1.1"
-    >
-      <defs>
-        <filter id="crispify">
-          <feComponentTransfer>
-            <feFuncA type="discrete" tableValues="0 1" />
-          </feComponentTransfer>
-        </filter>
-      </defs>
+    <svg style="display:none;position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
+      <defs><filter id="crispify"><feComponentTransfer><feFuncA type="discrete" tableValues="0 1"/></feComponentTransfer></filter></defs>
     </svg>
 
-    <div id="loading" style="display: none">
+    <div id="loading" style="display:none">
       <div class="habbo-loader">
-        <img src="/assets/ball-dark-light.png" class="spin-ball" alt="Bola" />
-        <p>CARREGANDO...</p>
+        <img src="/assets/ball-dark-light.png" class="spin-ball" alt="" />
+        <p>Carregando...</p>
       </div>
     </div>
 
     <div class="lobby-shell">
-      <aside
-        class="lobby-side lobby-side--left"
-        aria-hidden="true"
-      >
-        <img
-          src="/assets/azul.png?v=20260621-copa-pro"
-          alt=""
-          class="lobby-side-image"
-        />
+      <aside class="lobby-side lobby-side--left" aria-hidden="true">
+        <img src="/assets/azul.png" alt="" class="lobby-side-image" />
       </aside>
 
       <main class="habbo-lobby-container">
         <!-- Header -->
         <header class="habbo-header">
-          <div class="logo-area">
-            <img src="/assets/Logo_Game.png" alt="Logo Game" class="main-logo" />
-          </div>
-          <div class="user-info">
-            <span class="habbo-motto">COPA DOS TREINADORES 2026</span>
-          </div>
+          <img src="/assets/Logo_Game.png" alt="Logo" class="main-logo" />
+          <span class="habbo-motto">Copa dos Treinadores 2026</span>
         </header>
 
-        <!-- Main Content Grid -->
+        <!-- Main Card -->
         <div class="habbo-content">
-          <!-- Bottom Row: Integrated Entrance & Queue Card -->
-          <section class="habbo-box entrance-integrated-box" style="flex: 1">
+          <section class="habbo-box" style="flex:1">
             <div class="habbo-box-header">
-              <div class="habbo-box-title">ENTRAR NA ARENA & FILA DE ESPERA</div>
+              <h2 class="habbo-box-title">Entrar na Arena</h2>
               <span id="queue-count" class="queue-count-badge">0 jogadores</span>
             </div>
             <div class="habbo-box-content entrance-grid">
               <div class="entrance-left">
                 <div class="status-bar">
-                  <span class="status-label">STATUS:</span>
-                  <span id="arena-status" class="status-value">CARREGANDO</span>
+                  <span class="status-label">Status</span>
+                  <span id="arena-status" class="status-value">Carregando</span>
                 </div>
 
                 <form id="join-form" class="habbo-form">
-                  <label for="player-name">Nick no Habbo:</label>
+                  <label for="player-name">Nick no Habbo</label>
                   <div class="input-group">
-                    <input
-                      type="text"
-                      id="player-name"
-                      placeholder="Digite seu nick..."
-                      autocomplete="name"
-                      required
-                    />
-                    <button
-                      class="habbo-btn habbo-btn-green"
-                      id="join-btn"
-                      type="submit"
-                    >
-                      ENTRAR
-                    </button>
+                    <input type="text" id="player-name" placeholder="Seu nick..." autocomplete="name" required />
+                    <button class="habbo-btn habbo-btn-green" id="join-btn" type="submit">Entrar</button>
                   </div>
                 </form>
-                <div class="entrance-actions">
-                  <button
-                    class="habbo-btn"
-                    id="spectate-btn"
-                    type="button"
-                  >
-                    ASSISTIR PARTIDA
-                  </button>
-                  <small class="entrance-actions-copy">
-                    Entra sem jogar, so para acompanhar o campo e o chat ao vivo.
-                  </small>
-                </div>
-                <p class="help-text" id="arena-copy">
-                  Aguarde os treinadores abrirem a arena.
-                </p>
 
-                <section
-                  class="lobby-info-grid"
-                  aria-label="Informacoes da arena"
-                >
+                <div class="entrance-actions">
+                  <button class="habbo-btn" id="spectate-btn" type="button">Assistir Partida</button>
+                  <small class="entrance-actions-copy">Entra sem jogar, so para acompanhar o campo e o chat ao vivo.</small>
+                </div>
+
+                <p class="help-text" id="arena-copy">Aguarde os treinadores abrirem a arena.</p>
+
+                <!-- Info Cards -->
+                <section class="lobby-info-grid" aria-label="Informacoes">
                   <article class="lobby-info-item">
-                    <img
-                      src="/assets/COMO_FUNCIONA.png"
-                      alt="Como Funciona"
-                      class="lobby-info-img useFilter"
-                    />
-                    <p>
-                      Uma arena unica para todo mundo: entram 5 no azul, 5 no
-                      vermelho, e o restante assiste enquanto aguarda a vez.
-                    </p>
+                    <img src="/assets/COMO_FUNCIONA.png" alt="Como Funciona" class="lobby-info-img useFilter" />
+                    <p>Uma arena unica: entram 5 no azul, 5 no vermelho, e o restante assiste enquanto aguarda.</p>
                   </article>
                   <article class="lobby-info-item">
-                    <img
-                      src="/assets/REGRAS.png"
-                      alt="Regras"
-                      class="lobby-info-img useFilter"
-                    />
-                    <p>
-                      Ganha quem fizer 3 gols primeiro. O limite e 3 minutos; se
-                      terminar empatado, vira GOL DE OURO!
-                    </p>
+                    <img src="/assets/REGRAS.png" alt="Regras" class="lobby-info-img useFilter" />
+                    <p>Ganha quem fizer 3 gols primeiro. Limite de 3 minutos; empate vira Gol de Ouro!</p>
                   </article>
                   <article class="lobby-info-item">
-                    <img
-                      src="/assets/DETALHES.png"
-                      alt="Detalhes"
-                      class="lobby-info-img useFilter"
-                    />
-                    <p>
-                      O gol vale 5 pontos para a EQUIPE TODA. A vitoria da equipe
-                      soma mais 2 pontos para todos do time vencedor.
-                    </p>
+                    <img src="/assets/DETALHES.png" alt="Detalhes" class="lobby-info-img useFilter" />
+                    <p>Gol = 5 pts para a equipe. Vitoria = +2 pts extras para o time vencedor.</p>
                   </article>
                   <article class="lobby-info-item">
-                    <img
-                      src="/assets/PREMAICAO.png"
-                      alt="Premiacao"
-                      class="lobby-info-img useFilter"
-                    />
-                    <div style="display: flex; flex-direction: column; gap: 6px; width: 100%;">
+                    <img src="/assets/PREMAICAO.png" alt="Premiacao" class="lobby-info-img useFilter" />
+                    <div style="display:flex;flex-direction:column;gap:6px;width:100%">
                       <div class="premio-row">
                         <span class="medal-badge medal-gold">1</span>
-                        <img
-                          src="/assets/hc_gift_31days_icon.png"
-                          alt="hc"
-                        />
-                        <p><strong>1o Lugar:</strong> 2 HC + 30 medalhas temporarias</p>
+                        <img src="/assets/hc_gift_31days_icon.png" alt="" />
+                        <p><strong>1o Lugar:</strong> 2 HC + 30 medalhas</p>
                       </div>
                       <div class="premio-row">
                         <span class="medal-badge medal-silver">2</span>
-                        <img
-                          src="/assets/hc_gift_31days_icon.png"
-                          alt="hc"
-                        />
-                        <p><strong>2o Lugar:</strong> 1 HC + 20 medalhas temporarias</p>
+                        <img src="/assets/hc_gift_31days_icon.png" alt="" />
+                        <p><strong>2o Lugar:</strong> 1 HC + 20 medalhas</p>
                       </div>
                       <div class="premio-row">
                         <span class="medal-badge medal-bronze">3</span>
-                        <img
-                          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6eYXfWOm_amq_2dKYBeJZFyM9BCJLtq_sEaI0F1hhgLcPikaeknqZnvZsqc7hu6cp_cuJPhs3m3nyt6j-YaBGTAKcL_EK-AxS92LmRxiDKldLE8w5dL3f5UX7pILZQV9GY2eAo2Lz8S3b/s0/863__-543.png"
-                          alt="hc"
-                        />
-                        <p><strong>3o Lugar:</strong> 1 HC + 10 medalhas temporarias</p>
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6eYXfWOm_amq_2dKYBeJZFyM9BCJLtq_sEaI0F1hhgLcPikaeknqZnvZsqc7hu6cp_cuJPhs3m3nyt6j-YaBGTAKcL_EK-AxS92LmRxiDKldLE8w5dL3f5UX7pILZQV9GY2eAo2Lz8S3b/s0/863__-543.png" alt="" />
+                        <p><strong>3o Lugar:</strong> 1 HC + 10 medalhas</p>
                       </div>
                     </div>
                   </article>
@@ -207,9 +111,7 @@
               </div>
               <div class="entrance-right">
                 <h3 class="queue-inner-title">Fila Atual</h3>
-                <div class="admin-list queue-scroll-area" id="queue-preview">
-                  <!-- Populated via JS -->
-                </div>
+                <div class="admin-list queue-scroll-area" id="queue-preview"></div>
               </div>
             </div>
           </section>
@@ -220,27 +122,14 @@
           <div class="footer-copy">Companhia dos Treinadores &copy; 2026</div>
           <div class="footer-credit">
             <span>Desenvolvido por</span>
-            <img
-              src="https://www.habbo.com.br/habbo-imaging/avatarimage?user=mitojmcam&headonly=1&direction=2&head_direction=2&gesture=sml&size=s"
-              alt="mitojmcam"
-              class="footer-head"
-              loading="lazy"
-              referrerpolicy="no-referrer"
-            />
+            <img src="https://www.habbo.com.br/habbo-imaging/avatarimage?user=mitojmcam&headonly=1&direction=2&head_direction=2&gesture=sml&size=s" alt="mitojmcam" class="footer-head" loading="lazy" referrerpolicy="no-referrer" />
             <strong>mitojmcam</strong>
           </div>
         </footer>
       </main>
 
-      <aside
-        class="lobby-side lobby-side--right"
-        aria-hidden="true"
-      >
-        <img
-          src="/assets/vermelho.png?v=20260621-copa-pro"
-          alt=""
-          class="lobby-side-image"
-        />
+      <aside class="lobby-side lobby-side--right" aria-hidden="true">
+        <img src="/assets/vermelho.png" alt="" class="lobby-side-image" />
       </aside>
     </div>
 
