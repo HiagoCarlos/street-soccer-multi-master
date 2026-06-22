@@ -5,7 +5,11 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --trace-warnings server/server.js",
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:ui\"",
+    "dev:server": "nodemon --trace-warnings server/server.js",
+    "dev:ui": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
     "start": "node server/server.js"
   },
   "repository": {
@@ -26,11 +30,16 @@
     "mongodb": "^7.3.0",
     "mongoose": "^6.0.12",
     "nanoid": "^3.1.30",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "path-to-regexp": "^8.4.2",
     "socket.io": "^4.1.1"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.0.1",
     "mongodb-memory-server": "^11.2.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "vite": "^5.4.14"
   }
 }

@@ -42,7 +42,10 @@ mongoose
 app.get("/", async function (req,res){ 
     logip(req,res).catch(err => console.log("Error logging visit", err));
     res.set('Cache-Control', 'no-store, max-age=0');
-    // res.render('../client/welcome/welcome.ejs');
+    const frontendIndex = path.join(__dirname, "../frontend/dist/index.html");
+    if (fs.existsSync(frontendIndex)) {
+        return res.sendFile(frontendIndex);
+    }
     res.sendFile("/client/welcome/welcome.html",{root:path.join(__dirname,"../")});
 })
 
@@ -53,6 +56,10 @@ app.get("/play", async function (req,res){
         return res.redirect('/');
     }
     logip(req,res).catch(err => console.log("Error logging visit", err));
+    const frontendIndex = path.join(__dirname, "../frontend/dist/index.html");
+    if (fs.existsSync(frontendIndex)) {
+        return res.sendFile(frontendIndex);
+    }
     res.render(path.join(__dirname, '../client/game/game.ejs'),{playerName});
 })
 
@@ -202,6 +209,7 @@ app.post('/admin/api/:action', basicAdminAuth, async (req,res)=>{
 });
 
 app.use("/", express.static(path.join(__dirname, "../client"), { maxAge: '1d' }));
+app.use("/frontend", express.static(path.join(__dirname, "../frontend/dist"), { maxAge: '1d' }));
 
 
 app.use('/room',roomsRouter)
