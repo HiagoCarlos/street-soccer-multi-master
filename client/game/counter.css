@@ -1,51 +1,22 @@
 @keyframes timer_pulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(0.92);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1);
-  }
+  0%, 100% { transform: translate(-50%, -50%) scale(0.92); }
+  50% { transform: translate(-50%, -50%) scale(1); }
 }
 
 @keyframes timer_countdown {
-  0% {
-    content: "3";
-  }
-  33.3333333333% {
-    content: "2";
-  }
-  66.6666666667% {
-    content: "1";
-  }
-  100% {
-    content: "0";
-  }
+  0% { content: "3"; }
+  33.3333333333% { content: "2"; }
+  66.6666666667% { content: "1"; }
+  100% { content: "0"; }
 }
 
 @keyframes timer_indicator {
-  100% {
-    transform: translateY(100%);
-  }
-}
-
-@keyframes timer_ring_pulse {
-  0%, 100% {
-    box-shadow:
-      0 0 0 3px rgba(0, 200, 83, 0.2),
-      inset 0 0 60px rgba(0, 200, 83, 0.1),
-      0 28px 90px rgba(0, 0, 0, 0.5);
-  }
-  50% {
-    box-shadow:
-      0 0 0 6px rgba(0, 200, 83, 0.4),
-      inset 0 0 80px rgba(0, 200, 83, 0.15),
-      0 28px 90px rgba(0, 0, 0, 0.5);
-  }
+  100% { transform: translateY(100%); }
 }
 
 div#go321 {
-  width: min(52vmin, 400px);
-  height: min(52vmin, 400px);
+  width: min(56vmin, 420px);
+  height: min(56vmin, 420px);
   position: absolute;
   top: 57%;
   left: 50%;
@@ -54,33 +25,23 @@ div#go321 {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  color: #fff;
-  border: 2px solid rgba(0, 200, 83, 0.4);
+  color: #ffffff;
+  border: 3px solid #009c3b;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 40%, rgba(0, 200, 83, 0.15), transparent 50%),
-    radial-gradient(circle at 50% 60%, rgba(255, 214, 0, 0.1), transparent 55%),
-    rgba(10, 14, 26, 0.9);
+  background: #001233;
   box-shadow:
-    0 0 0 3px rgba(0, 200, 83, 0.2),
-    inset 0 0 60px rgba(0, 200, 83, 0.1),
-    0 28px 90px rgba(0, 0, 0, 0.5);
-  font-family: var(--font-display);
-  font-size: min(22vmin, 160px);
-  font-weight: 700;
-  backdrop-filter: blur(20px);
-  animation:
-    timer_pulse 1s 0.875s 3 cubic-bezier(0.9, 0, 0.1, 1),
-    timer_ring_pulse 1s 0.875s 3 ease-in-out;
+    0 0 0 2px rgba(254, 223, 0, 0.2),
+    0 20px 60px rgba(0, 0, 0, 0.5);
+  font-family: 'Montserrat', sans-serif;
+  font-size: min(23vmin, 170px);
+  font-weight: 900;
+  animation: timer_pulse 1s 0.875s 3 cubic-bezier(0.9, 0, 0.1, 1);
 }
 
 div#go321:before {
   content: "3";
   position: relative;
   z-index: 1;
-  text-shadow:
-    0 0 40px rgba(0, 200, 83, 0.5),
-    0 4px 0 rgba(0, 0, 0, 0.4);
   animation: 3s 1s forwards timer_countdown;
 }
 
@@ -89,6 +50,6 @@ div#go321:after {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(180deg, transparent 20%, rgba(0, 200, 83, 0.15));
+  background: linear-gradient(180deg, transparent, rgba(0, 156, 59, 0.3));
   animation: 3s 1s linear forwards timer_indicator;
 }

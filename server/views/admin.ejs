@@ -6,34 +6,77 @@
   <title>Treinadores | Arena Admin</title>
   <link rel="stylesheet" href="/style.css">
   <style>
-    :root {
-    --bg-glass: rgba(20, 20, 25, 0.85);
-    --blur: blur(10px);
-    --border-glass: rgba(255, 255, 255, 0.1);
-    --shadow-md: 0 4px 6px rgba(0,0,0,0.3);
-    --shadow-lg: 0 10px 20px rgba(0,0,0,0.5);
-    --green-glow: rgba(0, 255, 0, 0.5);
-    --green: #00e676;
-    --font-pixel: 'Courier New', monospace;
-    --font-main: 'Open Sans', sans-serif;
-    --text-muted: #888;
-    --text-primary: #fff;
-    --text-secondary: #ccc;
-    --yellow-dim: rgba(255, 214, 0, 0.1);
-    --yellow: #ffd600;
-    --yellow-glow: rgba(255, 214, 0, 0.3);
-    --red-dim: rgba(255, 23, 68, 0.1);
+  /* Importando uma fonte moderna e esportiva do Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+  :root {
+    /* Tema Copa / Brasil Moderno */
+    --brazil-blue: #002776;
+    --brazil-green: #009c3b;
+    --brazil-yellow: #fedf00;
+
+    /* Painéis de Vidro com tom azulado escuro para dar contraste */
+    --bg-glass: rgba(0, 39, 118, 0.6); 
+    --blur: blur(15px);
+    --border-glass: rgba(254, 223, 0, 0.4); /* Bordinha amarela moderna */
+    
+    /* Sombras modernas (suaves e amplas) */
+    --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 15px 35px rgba(0, 156, 59, 0.3);
+    
+    /* Brilhos (Glows) vibrantes */
+    --green-glow: rgba(0, 156, 59, 0.7);
+    --yellow-glow: rgba(254, 223, 0, 0.6);
+    
+    /* Cores principais atualizadas */
+    --green: #00e676; /* Um verde um pouco mais neon para botões ficarem clicáveis */
+    --yellow: #fedf00;
     --red: #ff1744;
-    --radius: 8px;
-    --radius-sm: 4px;
+    --red-dim: rgba(255, 23, 68, 0.15);
+
+    /* Textos */
+    --text-primary: #ffffff;
+    --text-secondary: #f0f0f0;
+    --text-muted: rgba(255, 255, 255, 0.6);
+    
+    /* Substituindo a fonte pixelada por uma fonte moderna e limpa */
+    --font-pixel: 'Poppins', sans-serif;
+    --font-main: 'Poppins', sans-serif;
+
+    /* Bordas mais arredondadas para um visual de App atual */
+    --radius: 16px;
+    --radius-sm: 8px;
   }
   
   body {
-    background-color: #121212; /* Fundo escuro padrão para a arena */
+    /* Fundo com gradiente moderno: Azul escuro descendo para Verde bandeira */
+    background: linear-gradient(135deg, #001233 0%, #002776 50%, #005024 100%);
+    background-attachment: fixed;
     color: var(--text-primary);
+    font-family: var(--font-main);
     min-height: 100vh;
     overflow-y: auto;
+    margin: 0;
   }
+
+  /* Deixando os títulos com a cara da Copa */
+  h1, h2, h3 {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--brazil-yellow);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  /* Ajuste para garantir que qualquer tabela ou lista fique legível */
+  .glass-panel {
+    background: var(--bg-glass);
+    backdrop-filter: var(--blur);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+  }
+
     body {
       min-height: 100vh;
       overflow-y: auto;

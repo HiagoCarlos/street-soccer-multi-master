@@ -1,15 +1,17 @@
 h1 {
     margin: 0;
     text-align: center;
-    font-family: var(--font-display);
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.4rem;
+    font-weight: 900;
     text-transform: uppercase;
+    color: #ffffff;
 }
 
 .keyboard {
     text-align: center;
     font-size: 14px;
-    font-family: var(--font-display);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .keyboard__row {
@@ -27,20 +29,24 @@ h1 {
     box-sizing: border-box;
     cursor: pointer;
     user-select: none;
-    color: var(--text-primary);
+    color: #ffffff;
     text-align: center;
-    background: rgba(0, 200, 83, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    box-shadow: inset 0 -3px 0 rgba(0, 200, 83, 0.25);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    background: #002776;
+    border: 2px solid #009c3b;
+    border-radius: 4px;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.1s ease;
 }
 
 .keyboard__row > div[data-pressed],
 .keyboard__row > div:active {
-    top: 0.12em;
-    color: #fff;
-    background: rgba(0, 200, 83, 0.2);
-    box-shadow: inset 0 -1px 0 rgba(0, 200, 83, 0.4);
+    top: 2px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+    background: #009c3b;
+    color: #ffffff;
 }
 
 .key--space {
