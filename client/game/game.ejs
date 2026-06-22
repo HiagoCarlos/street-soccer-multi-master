@@ -7,13 +7,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,height=device-height initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>[TRE] Futzin dos Treinadores</title>
+    <title>Copa dos Treinadores 2026 - Arena</title>
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <link rel="apple-touch-icon" href="/assets/favicon-192.png">
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/game/counter.css">
-    <link rel="stylesheet" href="/game/canvas.css">
-    <link rel="stylesheet" href="/game/keyboard.css">
+    <link rel="stylesheet" href="/style.css?v=20260621-copa-pro">
+    <link rel="stylesheet" href="/game/counter.css?v=20260621-copa-pro">
+    <link rel="stylesheet" href="/game/canvas.css?v=20260621-copa-pro">
+    <link rel="stylesheet" href="/game/keyboard.css?v=20260621-copa-pro">
 </head>
 <body class="arena-body">
     <!-- SVG Crispify -->
@@ -32,7 +32,7 @@
         <section class="arena-stage">
             <nav id="navbar" class="arena-hud">
                 <div class="hud-logo-area">
-                    <img src="/assets/Logo_Game.png" alt="Logo" class="hud-logo pixel-icon">
+                    <img src="/assets/Logo_Game.png" alt="Copa dos Treinadores" class="hud-logo pixel-icon">
                 </div>
                 <div class="hud-score">
                     <div class="score-strip" aria-label="Placar">
@@ -57,7 +57,7 @@
             </div>
 
             <div id="spectator-badge" class="spectator-badge" hidden>
-                <span id="spectator-badge-text">Você está assistindo a partida.</span>
+                <span id="spectator-badge-text">Voce esta assistindo a partida.</span>
             </div>
 
             <div id="canvasDiv">
@@ -72,15 +72,15 @@
                     <img src="/assets/times.png" alt="Arena Times" class="lock-image">
                     <div class="lock-content">
                         <strong id="overlay-title">Arena Fechada</strong>
-                        <span id="overlay-copy">Você está na fila. A arena será liberada pelo painel admin.</span>
+                        <span id="overlay-copy">Voce esta na fila. A arena sera liberada pelo painel admin.</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Habbo Tackle Button -->
+            <!-- Tackle Button -->
             <button id="tackle" class="habbo-btn habbo-btn-green" type="button">
                 <span>DESARME</span>
-                <small>Espaço / T / Touch</small>
+                <small>Espaco / T / Touch</small>
             </button>
         </section>
 
@@ -105,7 +105,7 @@
 
             <section class="habbo-box side-panel">
                 <div class="habbo-box-header">
-                    <h2 class="habbo-box-title">Próximos</h2>
+                    <h2 class="habbo-box-title">Proximos</h2>
                 </div>
                 <div class="habbo-box-content no-padding">
                     <div class="team-grid" style="padding: 10px;">
@@ -118,8 +118,8 @@
                             <div id="next-b" class="mini-list"></div>
                         </div>
                     </div>
-                    <div style="border-top: 1px solid #ccc;">
-                        <h3 style="padding: 5px 10px; margin: 0; font-size: 11px; color: #666; background: #e4e2df;">Fila Restante</h3>
+                    <div style="border-top: 1px solid rgba(0,0,0,0.08);">
+                        <h3 style="padding: 6px 10px; margin: 0; font-size: 11px; color: #666; background: #e4e2df; text-transform: uppercase; letter-spacing: 0.3px;">Fila Restante</h3>
                         <div id="queue-list" class="queue-list queue-list--stage"></div>
                     </div>
                 </div>

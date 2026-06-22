@@ -3,12 +3,15 @@
     --sidebar-width: 360px;
 }
 
+/* ============================================ */
+/* ARENA BODY                                   */
+/* ============================================ */
 .arena-body {
     min-height: 100svh;
     overflow-x: hidden;
     overflow-y: hidden;
     position: relative;
-    background: #009c3b url("/assets/bg.png") no-repeat center center !important;
+    background: #002776 url("/assets/bg.png") no-repeat center center !important;
     background-size: cover;
     background-attachment: fixed;
     isolation: isolate;
@@ -20,11 +23,15 @@
     inset: 0;
     z-index: -1;
     background:
-        linear-gradient(180deg, rgba(0, 156, 59, 0.55), rgba(255, 223, 0, 0.25) 42%, rgba(0, 39, 118, 0.55)),
-        rgba(0, 39, 118, 0.3);
+        radial-gradient(ellipse at 30% 20%, rgba(0, 156, 59, 0.3), transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(255, 223, 0, 0.1), transparent 50%),
+        linear-gradient(180deg, rgba(0, 39, 118, 0.6) 0%, rgba(0, 156, 59, 0.4) 50%, rgba(0, 39, 118, 0.7) 100%);
     pointer-events: none;
 }
 
+/* ============================================ */
+/* SHELL LAYOUT                                 */
+/* ============================================ */
 .arena-shell {
     width: 100%;
     min-height: 100svh;
@@ -52,6 +59,9 @@
     background: linear-gradient(135deg, #0b8c38 0%, #0a7a31 100%);
 }
 
+/* ============================================ */
+/* HUD BAR                                      */
+/* ============================================ */
 .arena-hud {
     position: absolute;
     top: 10px;
@@ -60,14 +70,17 @@
     z-index: 5;
     display: inline-flex;
     max-width: calc(100% - 20px);
-    min-height: 44px;
+    min-height: 48px;
     align-items: center;
-    gap: 8px;
-    padding: 5px 10px;
-    background: #fff9db;
+    gap: 10px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, rgba(255, 249, 219, 0.97), rgba(255, 240, 180, 0.95));
     border: 2px solid #002776;
-    border-radius: 8px;
-    box-shadow: 4px 4px 0px rgba(0, 39, 118, 0.3);
+    border-radius: 12px;
+    box-shadow:
+        0 6px 24px rgba(0, 39, 118, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    animation: fadeInUp 0.4s ease-out;
 }
 
 .pixel-icon,
@@ -80,19 +93,25 @@
 .hud-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .hud-logo-area {
     display: flex;
     align-items: center;
-    padding-right: 4px;
+    padding-right: 6px;
 }
 
 .hud-logo {
-    height: 32px;
+    height: 34px;
     width: auto;
     object-fit: contain;
+    filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.2));
+    transition: transform 0.2s ease;
+}
+
+.hud-logo:hover {
+    transform: scale(1.08);
 }
 
 .hud-score {
@@ -104,31 +123,35 @@
     justify-content: flex-end;
 }
 
+/* ============================================ */
+/* SCORE STRIP                                  */
+/* ============================================ */
 .score-strip {
     display: inline-grid;
-    grid-template-columns: 68px 44px 44px 88px;
+    grid-template-columns: 68px 46px 46px 92px;
     overflow: hidden;
     border: 2px solid #002776;
-    border-radius: 4px;
+    border-radius: 8px;
     background: #fff;
-    box-shadow: inset 1px 1px 3px rgba(0,0,0,0.2);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
 }
 
 .score-strip > * {
     display: grid;
     place-items: center;
-    min-height: 34px;
+    min-height: 36px;
     color: #fff;
     font-family: var(--font-pixel);
     font-size: 20px;
-    text-shadow: 1px 1px 0 #002776;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
 .score-status {
     padding: 0 6px;
-    color: #000;
-    background: #ffdf00;
+    color: #002776;
+    background: linear-gradient(135deg, #ffdf00, #ffc107);
     font-size: 12px;
+    font-weight: bold;
     text-shadow: none;
     text-transform: uppercase;
     white-space: nowrap;
@@ -137,47 +160,64 @@
 }
 
 #scoreboard-a {
-    background: #002776;
+    background: linear-gradient(135deg, #002776, #003d9e);
 }
 
 #scoreboard-b {
-    background: #cc1b1b;
+    background: linear-gradient(135deg, #cc1b1b, #e02020);
 }
 
 #time-left {
-    color: #000;
-    background: #ffdf00;
+    color: #002776;
+    background: linear-gradient(135deg, #ffdf00, #ffe44d);
     text-shadow: none;
     font-size: 16px;
+    font-weight: bold;
 }
 
+/* ============================================ */
+/* HUD BUTTONS                                  */
+/* ============================================ */
 .navbar-btn-my,
 #home,
 #help-btn,
 #leave-btn,
 #mute-btn {
-    min-height: 34px;
-    min-width: 34px;
+    min-height: 36px;
+    min-width: 36px;
     padding: 0 6px !important;
     display: inline-flex;
     place-items: center;
     justify-content: center;
     font-size: 16px;
+    border-radius: 8px !important;
+    transition: all 0.15s ease;
+}
+
+.navbar-btn-my:hover {
+    transform: translateY(-1px);
+    box-shadow:
+        inset 0 2px 0 rgba(255,255,255,0.3),
+        0 4px 0 rgba(0,39,118,0.35),
+        0 4px 12px rgba(0, 39, 118, 0.15) !important;
 }
 
 .navbar-btn-my img {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     object-fit: contain;
 }
 
+/* ============================================ */
+/* INFO BOXES (Ping/FPS)                        */
+/* ============================================ */
 #info {
     position: absolute;
     right: 20px;
-    top: 66px;
+    top: 68px;
     z-index: 4;
     display: flex !important;
-    gap: 8px;
+    gap: 6px;
     margin: 0 !important;
 }
 
@@ -185,36 +225,42 @@
     width: auto;
     min-width: 82px;
     margin: 0 !important;
-    padding: 5px 9px !important;
-    color: rgba(247, 248, 251, 0.86) !important;
-    background: rgba(4, 5, 9, 0.72) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    padding: 5px 10px !important;
+    color: rgba(247, 248, 251, 0.9) !important;
+    background: rgba(0, 39, 118, 0.75) !important;
+    border: 1px solid rgba(255, 223, 0, 0.2) !important;
     border-radius: 8px !important;
     font-size: 0.72rem !important;
+    font-family: var(--font-pixel) !important;
     line-height: 1.2;
     backdrop-filter: blur(12px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* ============================================ */
+/* SPECTATOR BADGE                              */
+/* ============================================ */
 .spectator-badge {
     position: absolute;
-    top: 66px;
+    top: 68px;
     left: 20px;
     z-index: 4;
     max-width: min(420px, calc(100vw - 40px));
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    min-height: 42px;
-    padding: 8px 14px;
-    color: #111;
-    background: #fff9db;
+    min-height: 44px;
+    padding: 10px 16px;
+    color: #002776;
+    background: linear-gradient(135deg, rgba(255, 249, 219, 0.97), rgba(255, 240, 180, 0.95));
     border: 2px solid #002776;
-    border-radius: 8px;
-    box-shadow: 4px 4px 0 rgba(0, 39, 118, 0.28), inset 2px 2px 0 rgba(255,255,255,0.5);
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 39, 118, 0.25);
     font-family: var(--font-standard);
     font-size: 13px;
     font-weight: 700;
     line-height: 1.35;
+    animation: slide-in-right 0.4s ease-out;
 }
 
 .spectator-badge[hidden] {
@@ -223,28 +269,37 @@
 
 .spectator-badge::before {
     content: "i";
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     flex: 0 0 auto;
     display: grid;
     place-items: center;
     color: #fff;
-    background: #009c3b;
+    background: linear-gradient(135deg, #009c3b, #00b341);
     border: 2px solid #002776;
-    border-radius: 4px;
+    border-radius: 6px;
     font-family: var(--font-pixel);
     font-size: 14px;
     line-height: 1;
     text-transform: uppercase;
-    text-shadow: 1px 1px 0 #002776;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.spectator-badge--next {
+    border-color: #009c3b;
+    animation: border-pulse 2s ease-in-out infinite, slide-in-right 0.4s ease-out;
 }
 
 .spectator-badge--next::before {
     content: "!";
-    background: #ffdf00;
+    background: linear-gradient(135deg, #ffdf00, #ffc107);
     color: #002776;
+    text-shadow: none;
 }
 
+/* ============================================ */
+/* TOUCH AREAS                                  */
+/* ============================================ */
 .touch-area {
     position: absolute;
     top: var(--navheight);
@@ -255,14 +310,17 @@
 
 #left-area {
     left: 0;
-    background: linear-gradient(90deg, rgba(0, 39, 118, 0.12), transparent 76%);
+    background: linear-gradient(90deg, rgba(0, 39, 118, 0.1), transparent 70%);
 }
 
 #right-area {
     right: 0;
-    background: linear-gradient(270deg, rgba(204, 27, 27, 0.12), transparent 76%);
+    background: linear-gradient(270deg, rgba(204, 27, 27, 0.1), transparent 70%);
 }
 
+/* ============================================ */
+/* TACKLE BUTTON                                */
+/* ============================================ */
 #tackle {
     position: absolute;
     right: 24px;
@@ -271,34 +329,44 @@
     width: min(164px, calc(100vw - 48px));
     display: none;
     place-items: center;
-    gap: 2px;
+    gap: 4px;
     padding: 10px 14px !important;
-    border-radius: 8px !important;
+    border-radius: 12px !important;
     z-index: 10;
-    background: #009c3b !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    box-shadow: 0 20px 44px rgba(0, 156, 59, 0.35);
+    background: linear-gradient(135deg, #009c3b, #00b341) !important;
+    border: 2px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 8px 24px rgba(0, 156, 59, 0.35), 0 4px 0 rgba(0, 80, 30, 0.4);
     text-transform: uppercase;
+    transition: all 0.15s ease;
+}
+
+#tackle:active {
+    transform: translateY(4px) !important;
+    box-shadow: 0 2px 8px rgba(0, 156, 59, 0.35), 0 0px 0 rgba(0, 80, 30, 0.4) !important;
 }
 
 #tackle span {
     font-family: var(--font-display);
     font-size: 0.9rem;
     line-height: 1;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
 #tackle small {
     display: block;
-    color: rgba(255, 255, 255, 0.72);
+    color: rgba(255, 255, 255, 0.7);
     font-family: var(--font-standard);
     font-size: 0.64rem;
     line-height: 1;
 }
 
+/* ============================================ */
+/* LOCK OVERLAY                                 */
+/* ============================================ */
 .lock-image {
     width: 100%;
     border-bottom: 2px solid #002776;
-    background: #fff9db;
+    background: linear-gradient(135deg, #fff9db, #ffdf00);
 }
 
 #lock-overlay {
@@ -311,8 +379,9 @@
 .lock-backdrop {
     position: absolute;
     inset: 0;
-    backdrop-filter: blur(10px);
-    background: rgba(0, 39, 118, 0.6);
+    backdrop-filter: blur(14px);
+    background:
+        radial-gradient(ellipse at center, rgba(0, 39, 118, 0.5), rgba(0, 39, 118, 0.75));
 }
 
 .lock-panel {
@@ -320,41 +389,49 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: min(450px, 90%);
+    width: min(460px, 90%);
     text-align: center;
+    animation: fadeInUp 0.5s ease-out;
 }
 
 .lock-content {
-    padding: 25px;
+    padding: 28px;
 }
 
 .lock-content strong {
     display: block;
-    font-size: 28px;
+    font-size: 26px;
     font-family: var(--font-pixel);
     color: #009c3b;
-    margin-bottom: 15px;
-    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+    margin-bottom: 14px;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.15);
     text-transform: uppercase;
 }
 
 .lock-content span {
     font-size: 15px;
-    color: #002776;
+    color: #444;
+    line-height: 1.5;
 }
 
+/* ============================================ */
+/* SIDEBAR                                      */
+/* ============================================ */
 .arena-sidebar {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 12px 12px 16px;
+    gap: 10px;
+    padding: 12px 12px 14px;
     overflow: hidden;
     border-left: 2px solid #002776;
-    background: transparent;
-    backdrop-filter: none;
+    background: linear-gradient(180deg, rgba(245, 240, 225, 0.08) 0%, rgba(0, 39, 118, 0.12) 100%);
+    backdrop-filter: blur(4px);
 }
 
+/* ============================================ */
+/* HELP MODAL                                   */
+/* ============================================ */
 .help-modal {
     position: fixed;
     inset: 0;
@@ -371,8 +448,8 @@
 .help-modal__backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 39, 118, 0.72);
-    backdrop-filter: blur(10px);
+    background: rgba(0, 39, 118, 0.8);
+    backdrop-filter: blur(14px);
 }
 
 .help-modal__panel {
@@ -381,6 +458,7 @@
     width: min(620px, 100%);
     max-height: min(720px, calc(100vh - 40px));
     overflow: auto;
+    animation: fadeInUp 0.4s ease-out;
 }
 
 .help-modal__head {
@@ -400,7 +478,7 @@
 
 .help-grid {
     display: grid;
-    gap: 9px;
+    gap: 8px;
 }
 
 .help-row {
@@ -408,36 +486,42 @@
     align-items: center;
     gap: 10px;
     min-height: 48px;
-    padding: 10px;
+    padding: 12px;
     background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.help-row:hover {
+    transform: translateX(3px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .help-row:nth-child(even) {
-    background: var(--habbo-grey-light);
+    background: #f9f7f2;
 }
 
 .help-key {
     flex: 0 0 auto;
-    min-width: 54px;
-    padding: 7px 9px;
+    min-width: 56px;
+    padding: 8px 10px;
     color: #002776;
     text-align: center;
     font-family: var(--font-pixel);
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1;
     text-transform: uppercase;
-    background: #ffdf00;
+    background: linear-gradient(135deg, #ffdf00, #ffe44d);
     border: 2px solid #002776;
-    border-radius: 4px;
-    box-shadow: 2px 2px 0px rgba(0,39,118,0.3);
+    border-radius: 6px;
+    box-shadow: 0 3px 0px rgba(0,39,118,0.3);
 }
 
 .help-row p,
 .help-note {
     margin: 0;
-    color: #000;
+    color: #333;
     line-height: 1.45;
     font-family: var(--font-standard);
     font-size: 13px;
@@ -446,17 +530,22 @@
 .help-note {
     margin-top: 14px;
     font-weight: bold;
+    color: #002776;
 }
 
+/* ============================================ */
+/* SIDE PANELS                                  */
+/* ============================================ */
 .side-panel {
     min-height: 0;
 }
 
 .side-panel h3 {
-    margin: 0 0 8px;
+    margin: 0 0 6px;
     color: var(--muted);
     font-size: 0.72rem;
     text-transform: uppercase;
+    letter-spacing: 0.3px;
 }
 
 .player-name-label .name-with-head {
@@ -472,7 +561,7 @@
 .mini-list,
 .queue-list {
     display: grid;
-    gap: 6px;
+    gap: 5px;
 }
 
 .queue-list--stage {
@@ -484,27 +573,51 @@
 .mini-item,
 .queue-item,
 .admin-item {
-    min-height: 28px;
+    min-height: 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    padding: 4px 8px;
+    padding: 5px 8px;
     color: #000;
     background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 6px;
     font-size: 12px;
     font-family: var(--font-standard);
+    transition: transform 0.1s ease, background 0.15s ease;
 }
 
 .mini-item:nth-child(even),
 .queue-item:nth-child(even) {
-    background: var(--habbo-grey-light);
+    background: #f9f7f2;
 }
 
-.team-title-blue { color: var(--habbo-blue); font-size: 11px; text-transform: uppercase; margin: 0 0 5px 0; font-family: var(--font-standard);}
-.team-title-red { color: #cc1b1b; font-size: 11px; text-transform: uppercase; margin: 0 0 5px 0; font-family: var(--font-standard);}
+.mini-item:hover,
+.queue-item:hover {
+    background: #e8f5ec;
+    transform: translateX(2px);
+}
+
+.team-title-blue {
+    color: var(--habbo-blue);
+    font-size: 11px;
+    text-transform: uppercase;
+    margin: 0 0 5px 0;
+    font-family: var(--font-standard);
+    font-weight: bold;
+    letter-spacing: 0.3px;
+}
+
+.team-title-red {
+    color: #cc1b1b;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin: 0 0 5px 0;
+    font-family: var(--font-standard);
+    font-weight: bold;
+    letter-spacing: 0.3px;
+}
 
 .name-with-head,
 .queue-name {
@@ -524,6 +637,7 @@
     object-fit: contain;
     image-rendering: pixelated;
     flex: 0 0 auto;
+    border-radius: 4px;
 }
 
 .habbo-head--empty {
@@ -536,6 +650,9 @@
     color: var(--muted);
 }
 
+/* ============================================ */
+/* CHAT                                         */
+/* ============================================ */
 .chat-header {
     display: flex;
     align-items: center;
@@ -543,8 +660,8 @@
 }
 
 .chat-icon {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
 }
 
@@ -561,57 +678,67 @@
     min-height: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     overflow: auto;
     margin-bottom: 10px;
     padding: 0 4px 4px 0;
 }
 
 .chat-message {
-    padding: 6px 10px;
-    border-radius: 12px;
-    background: #fff;
-    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 12px 12px 12px 4px;
+    background: linear-gradient(135deg, #fff, #f9f7f2);
+    border: 1px solid rgba(0, 0, 0, 0.06);
     font-family: var(--font-standard);
     color: #000;
     align-self: flex-start;
     display: inline-block;
     max-width: 90%;
     word-break: break-word;
-    box-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     font-size: 13px;
+    transition: transform 0.1s ease;
+    animation: fadeInUp 0.2s ease-out;
+}
+
+.chat-message:hover {
+    transform: translateX(2px);
 }
 
 .chat-message strong {
-    color: #000;
+    color: #002776;
     font-weight: bold;
     margin-right: 5px;
 }
 
 .chat-message p {
     display: inline;
-    color: #000;
+    color: #333;
     margin: 0;
 }
 
 .chat-form {
     display: flex;
-    gap: 5px;
+    gap: 6px;
     margin-top: 10px;
 }
 
 .chat-form input {
     flex: 1;
-    padding: 7px !important;
+    padding: 8px 10px !important;
     font-family: var(--font-standard);
     font-size: 12px;
+    border-radius: 8px !important;
 }
 
 .chat-form button {
-    padding: 0 12px;
-    font-size: 14px;
+    padding: 0 14px;
+    font-size: 13px;
 }
 
+/* ============================================ */
+/* RESPONSIVE                                   */
+/* ============================================ */
 @media (max-width: 980px) {
     .arena-body {
         overflow-y: auto;
@@ -637,8 +764,9 @@
         height: auto;
         overflow: visible;
         border-left: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding-top: 10px;
+        border-top: 2px solid #002776;
+        padding-top: 12px;
+        background: linear-gradient(180deg, rgba(0, 39, 118, 0.06) 0%, rgba(245, 240, 225, 0.1) 100%);
     }
 
     #tackle {
@@ -675,28 +803,28 @@
         height: auto;
         overflow: visible;
         border-left: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 2px solid #002776;
         padding: 8px 10px 14px;
     }
 
     .arena-hud {
         top: 6px;
-        min-height: 36px;
+        min-height: 38px;
         gap: 5px;
-        padding: 3px 7px;
-        border-radius: 6px;
+        padding: 4px 8px;
+        border-radius: 8px;
     }
 
     .hud-logo {
-        height: 24px;
+        height: 26px;
     }
 
     .score-strip {
-        grid-template-columns: 50px 32px 32px 72px;
+        grid-template-columns: 52px 34px 34px 74px;
     }
 
     .score-strip > * {
-        min-height: 28px;
+        min-height: 30px;
         font-size: 14px;
     }
 
@@ -715,8 +843,8 @@
     #help-btn,
     #leave-btn,
     #mute-btn {
-        min-height: 28px;
-        min-width: 28px;
+        min-height: 30px;
+        min-width: 30px;
         padding: 0 4px !important;
     }
 
@@ -733,8 +861,8 @@
     #tackle {
         right: 12px;
         bottom: 12px;
-        min-height: 42px;
-        width: min(118px, calc(100vw - 24px));
+        min-height: 44px;
+        width: min(120px, calc(100vw - 24px));
         padding: 7px 10px !important;
     }
 
@@ -753,16 +881,16 @@
 
 @media (max-width: 760px) {
     #info {
-        top: 62px;
+        top: 64px;
         right: 12px;
         flex-direction: column;
         align-items: flex-end;
     }
 
     .spectator-badge {
-        top: 62px;
+        top: 64px;
         left: 12px;
-        max-width: calc(100vw - 118px);
+        max-width: calc(100vw - 120px);
     }
 
     .arena-sidebar {
@@ -782,18 +910,20 @@
 
     .arena-hud {
         top: 6px;
-        min-height: 36px;
+        min-height: 38px;
         gap: 5px;
-        padding: 3px 8px;
+        padding: 4px 8px;
+        border-radius: 10px;
     }
 
     .score-strip {
-        grid-template-columns: 52px 36px 36px 76px;
+        grid-template-columns: 54px 38px 38px 78px;
+        border-radius: 6px;
     }
 
     .score-strip > * {
-        min-height: 30px;
-        font-size: 14px;
+        min-height: 32px;
+        font-size: 15px;
     }
 
     .score-status,
@@ -807,18 +937,18 @@
     #help-btn,
     #leave-btn,
     #mute-btn {
-        min-height: 30px;
-        min-width: 30px;
-        padding: 0 4px !important;
+        min-height: 32px;
+        min-width: 32px;
+        padding: 0 5px !important;
     }
 
     .navbar-btn-my img {
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
     }
 
     #info {
-        top: 54px;
+        top: 56px;
         right: 10px;
         left: auto;
         flex-direction: row;
@@ -826,12 +956,13 @@
     }
 
     .spectator-badge {
-        top: 54px;
+        top: 56px;
         left: 10px;
         max-width: calc(100vw - 24px);
         min-height: 0;
         padding: 8px 12px;
         font-size: 12px;
+        border-radius: 8px;
     }
 
     .help-modal {
@@ -860,7 +991,7 @@
 
 @media (max-width: 420px) {
     .score-strip {
-        grid-template-columns: 48px 34px 34px 68px;
+        grid-template-columns: 48px 34px 34px 70px;
     }
 
     .score-strip > * {
